@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 /**
  *
@@ -18,8 +20,9 @@ import javax.swing.JFrame;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    private static PasswordPrompt pPrompt;
     private String _imeiData;
-    private char[] password;
+    private static char[] password;
     private String name;
     private String history;
     private static ArrayList<Phones> _phonesArr;
@@ -183,6 +186,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         if(!listContainsPhone)
         {
+            jButton2.setVisible(false);
             jLabel4.setText("PHONE NOT IN DATABASE.");
         }
         
@@ -233,29 +237,28 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /*Starting the data retrieval*/
-        qeueryDatabase();
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                PasswordPrompt pPrompt = new PasswordPrompt();
+                pPrompt = new PasswordPrompt();
                 pPrompt.setVisible(true);
-                new MainFrame().setVisible(false);
             }
-        });
+        }); 
     }
     
     // function to read from database to repopulate arraylist.
-    public static void qeueryDatabase() throws SQLException, ClassNotFoundException
+    public void qeueryDatabase() throws SQLException, ClassNotFoundException
     {
         _phonesArr = new ArrayList<>();
+        password = pPrompt.retrievePass();
         try{
         Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://ultifix.com:3306/ultifixc_imei";
-            Connection conn = DriverManager.getConnection(url, "ultifixc_admin", 
-                    "rsdb1313");
+            Connection conn; 
+            conn = DriverManager.getConnection(url, "ultifixc_admin", 
+                    String.valueOf(password));
             Statement st = conn.createStatement();
             ResultSet srs = st.executeQuery("SELECT * FROM phones");
             while(srs.next())
@@ -266,11 +269,11 @@ public class MainFrame extends javax.swing.JFrame {
                 phone.setHistory(srs.getString("history"));
                 _phonesArr.add(phone);
             }
-        }catch(Exception e)
+        }catch(ClassNotFoundException | SQLException e)
         {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
-        }
+        } 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

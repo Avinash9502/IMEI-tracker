@@ -5,6 +5,11 @@
  */
 package imei.track;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Daniel
@@ -13,6 +18,7 @@ public class PasswordPrompt extends javax.swing.JFrame {
 
     
     private char[] password;
+    private MainFrame mainF;
     /**
      * Creates new form PasswordPrompt
      */
@@ -80,14 +86,21 @@ public class PasswordPrompt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        password = jPasswordField1.getPassword();
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        password = jPasswordField1.getPassword();
+        
+        mainF = new MainFrame();
+        
+        try {
+            mainF.qeueryDatabase();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(PasswordPrompt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mainF.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
     public char[] retrievePass()
     {
         return password;
