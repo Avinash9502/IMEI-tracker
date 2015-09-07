@@ -11,6 +11,10 @@ package imei.track;
  */
 public class EditData extends javax.swing.JFrame {
 
+    private String name;
+    private String imei;
+    private String repairHistory;
+    
     /**
      * Creates new form EditData
      */
@@ -127,8 +131,9 @@ public class EditData extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    //function for modifying the MySQL databse. 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void setNameField(String s)
@@ -144,6 +149,24 @@ public class EditData extends javax.swing.JFrame {
     public void setHistoryField(String s)
     {
         jTextArea1.setText(s);
+    }
+    
+    public String getNameField()
+    {
+        name = jTextField1.getText();
+        return name;
+    }
+    
+    public String getImeiField()
+    {
+        imei = jTextField2.getText();
+        return imei;
+    }
+    
+    public String getHistoryField()
+    {
+        repairHistory = jTextArea1.getText();
+        return repairHistory;
     }
     
     /**

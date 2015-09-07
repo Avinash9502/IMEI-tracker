@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 public class MainFrame extends javax.swing.JFrame {
 
     private String _imeiData;
+    private char[] password;
     private String name;
     private String history;
     private static ArrayList<Phones> _phonesArr;
@@ -239,7 +240,9 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainFrame().setVisible(true);
+                PasswordPrompt pPrompt = new PasswordPrompt();
+                pPrompt.setVisible(true);
+                new MainFrame().setVisible(false);
             }
         });
     }
