@@ -5,6 +5,10 @@
  */
 package imei.track;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Daniel
@@ -13,7 +17,7 @@ public class EditData extends javax.swing.JFrame {
 
     private String name;
     private String imei;
-    private String repairHistory;
+    private String history;
     
     /**
      * Creates new form EditData
@@ -133,7 +137,19 @@ public class EditData extends javax.swing.JFrame {
 
     //function for modifying the MySQL databse. 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        MainFrame mF = new MainFrame();
+        try {
+            getNameField();
+            getHistoryField();
+            getImeiField();
+            mF.addToDB(name, imei, history);
+            this.setVisible(false);
+            mF.setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditData.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditData.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void setNameField(String s)
@@ -165,8 +181,8 @@ public class EditData extends javax.swing.JFrame {
     
     public String getHistoryField()
     {
-        repairHistory = jTextArea1.getText();
-        return repairHistory;
+        history = jTextArea1.getText();
+        return history;
     }
     
     /**
