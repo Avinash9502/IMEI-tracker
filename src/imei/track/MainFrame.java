@@ -249,8 +249,9 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // function to read from database to repopulate arraylist.
-    public void qeueryDatabase() throws SQLException, ClassNotFoundException
+    public boolean qeueryDatabase() throws SQLException, ClassNotFoundException
     {
+        boolean result;
         _phonesArr = new ArrayList<>();
         password = pPrompt.retrievePass();
         try{
@@ -261,6 +262,7 @@ public class MainFrame extends javax.swing.JFrame {
                     String.valueOf(password));
             Statement st = conn.createStatement();
             ResultSet srs = st.executeQuery("SELECT * FROM phones");
+            result = true;
             while(srs.next())
             {
                 Phones phone = new Phones();
@@ -273,7 +275,10 @@ public class MainFrame extends javax.swing.JFrame {
         {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
-        } 
+            result = false;
+        }
+        
+        return result;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -89,16 +89,24 @@ public class PasswordPrompt extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        boolean result = true;
         password = jPasswordField1.getPassword();
         
         mainF = new MainFrame();
         
         try {
-            mainF.qeueryDatabase();
+            result = mainF.qeueryDatabase();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(PasswordPrompt.class.getName()).log(Level.SEVERE, null, ex);
         }
-        mainF.setVisible(true);
+        
+        if(result)
+        {
+            mainF.setVisible(true);
+            this.setVisible(false);
+        }else{
+            new AccessDenied().setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public char[] retrievePass()
