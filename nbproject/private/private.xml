@@ -5,7 +5,7 @@
             <url>src/imei/track/MainFrame.java</url>
             <bookmark id="1">
                 <name/>
-                <line>193</line>
+                <line>256</line>
                 <key/>
             </bookmark>
         </file>
@@ -14,6 +14,9 @@
         <group>
             <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/IMEI%20Track/src/imei/track/MainFrame.java</file>
             <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/IMEI%20Track/src/imei/track/Phones.java</file>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/IMEI%20Track/src/imei/track/EditData.java</file>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/IMEI%20Track/src/imei/track/PasswordPrompt.java</file>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/IMEI%20Track/src/imei/track/AccessDenied.java</file>
         </group>
     </open-files>
 </project-private>

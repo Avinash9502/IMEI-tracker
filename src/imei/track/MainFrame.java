@@ -20,12 +20,13 @@ import javax.swing.JFrame;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private static PasswordPrompt pPrompt;
+    //private static PasswordPrompt pPrompt;
     private String _imeiData;
     private static char[] password;
     private String name;
     private String history;
     private static ArrayList<Phones> _phonesArr;
+    private static PasswordPrompt pPrompt;
     /**
      * Creates new form MainFrame
      */
@@ -209,7 +210,7 @@ public class MainFrame extends javax.swing.JFrame {
     // Button for editing data if a phone is found
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //hides the main program so users cant do stupid bullshit and break things
-        this.setVisible(false);
+        //this.setVisible(false);
         
         //open the editData field
         EditData editData = new EditData();
@@ -262,6 +263,7 @@ public class MainFrame extends javax.swing.JFrame {
             public void run() {
                 pPrompt = new PasswordPrompt();
                 pPrompt.setVisible(true);
+                
             }
         }); 
     }
@@ -270,7 +272,6 @@ public class MainFrame extends javax.swing.JFrame {
     {
         
         //connect to database
-        boolean result;
         _phonesArr = new ArrayList<>();
         password = pPrompt.retrievePass();
         try{
@@ -287,7 +288,6 @@ public class MainFrame extends javax.swing.JFrame {
         {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
-            result = false;
         }
         
         
@@ -295,7 +295,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // function to read from database to repopulate arraylist.
-    public boolean qeueryDatabase() throws SQLException, ClassNotFoundException
+    public static boolean qeueryDatabase() throws SQLException, ClassNotFoundException
     {
         boolean result;
         _phonesArr = new ArrayList<>();

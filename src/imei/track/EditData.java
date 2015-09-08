@@ -44,7 +44,7 @@ public class EditData extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
         setResizable(false);
 
@@ -144,7 +144,7 @@ public class EditData extends javax.swing.JFrame {
             getImeiField();
             mF.addToDB(name, imei, history);
             this.setVisible(false);
-            mF.setVisible(true);
+            //mF.setVisible(true);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(EditData.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
